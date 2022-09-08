@@ -25,3 +25,10 @@ table th {
     background-color: #403f43;
     color: white;
 }
+.dirPath{
+    padding-top: 10px;
+}
+.bRadius{
+    border-radius: 5px;
+    text-align: center;  
+}
