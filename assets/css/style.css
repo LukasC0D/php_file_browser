@@ -32,3 +32,19 @@ table th {
     border-radius: 5px;
     text-align: center;  
 }
+.tdNone a{
+    text-decoration: none;
+    color: white; 
+}
+.tdNone{
+ font-size: 10px;
+} 
+.box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.fPx{
+    margin-left: 1.3px;
+}
