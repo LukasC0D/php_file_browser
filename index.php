@@ -47,6 +47,21 @@
                     unlink($path . "/" . $_GET['file']);
                     ob_start();
                     header('Location:' . '?path=' . ltrim($path, './'));
+                } elseif ($_GET['action'] == 'download') {
+                    $downloadFile = str_replace("&nbsp;", " ", htmlentities($file, 0, 'utf-8'));
+                    ob_clean();
+                    ob_flush();
+                    header('Content-Description: File Transfer');
+                    header('Content-Type: application/pdf');
+                    header('Content-Disposition: attachment; filename=' . basename($downloadFile));
+                    header('Content-Transfer-Encoding: binary');
+                    header('Expires: 0');
+                    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                    header('Pragma: public');
+                    header('Content-Length: ' . filesize($downloadFile));
+                    ob_end_flush();
+                    readfile($downloadFile);
+                    exit;
                 }
             }
         }
@@ -56,7 +71,15 @@
                 if ($back[$i] == '')
                     continue;
                 $emptyStr .= '/' . $back[$i];
-            }    
+            }
+        if (isset($_POST['upload'])) {
+            $file_name = $_FILES['file']['name'];
+            $file_size = $_FILES['file']['size'];
+            $file_tmp = $_FILES['file']['tmp_name'];
+            $file_type = $_FILES['file']['type'];
+            $file_store = ($path . "/") . $file_name;
+            move_uploaded_file($file_tmp, $file_store);
+        }    
     ?>
 <head>
     <meta charset="UTF-8">
@@ -69,7 +92,7 @@
 <body>
     <?php
         if (isset($_SESSION['logged_in']) == false) {
-            echo ('<div class="box">
+            echo('<div class="box">
                         <div class="d-flex justify-content-center">
                             <h3>Please Log In</h3>
                         </div>
@@ -115,7 +138,11 @@
                 echo ("<td>" . $item . "</td>");
             };
             if (is_file($path . '/' . $item)) {
-                echo ("<td><a href='./?path=" . ltrim($path, './') . '&file=' . $item . '&action=delete' . "'>Delete</a></td>");              
+                echo ("<td class='d-flex justify-content-around'>
+                           <a class='sLink' href='./?path=" . ltrim($path, './') . '&file=' . $item . '&action=delete' . "'>Delete</a>
+                           <a class='sLink' href='./?path=" . ltrim($path, "./") . "&file=" . $item . "&action=download" . "'>" . "Download </a>
+                        </td>"
+                    );      
             } else {
                 echo ("<td></td>");
             };
@@ -127,6 +154,13 @@
                 <label for="name">Create new :</label>
                 <input class="bRadius" type="text" id="name" name="name" placeholder="folder name" maxlength="32">
                 <input class="bRadius" id="createButton" type="submit" name="make" value="Create">
+            </form>
+        </div>
+        <div class="container pt-3">
+            <form class="upload-file" action="" method="POST" enctype="multipart/form-data">
+                <label>Upload a file:<br></label>
+                <input type="file" name="file" id="file">
+                <input id="UploadButton" type="submit" name="upload" value="Upload">
             </form>
         </div>
 </body>
