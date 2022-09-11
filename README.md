@@ -2,42 +2,50 @@
 
 ## Product name 
 
-File Manager
+File Manager.
 
 ## What can a File Manager do?
 
-- Create new folder. 
-- Add/remove a file.
+- Create a new folder. 
+- Add a new file.
 - Download a file.
 - Delete a file.
 
-## How to run
+## How to run?
 
 - Download [XAMPP](https://www.apachefriends.org/index.html) and install it.
-- Clone/download git repository https://github.com/LukasC0D/php_file_browser.
-- Add repository to HTDOCS folder .You can locate it in  XAMPP directory.
-- You can clone repository directly to HTDOCS. In HTDOCS directory right click mouse, click Git Bash Here. Clone it!
-- Run XAMPP and start Apache server.
-- Open cloned repository with Visual Studio code.
-- Open your browser find your searchbar and type in:
+- Clone or download git repository https://github.com/LukasC0D/php_file_browser. 
+- Add repository to htdocs.The folder is located in the C drive (C:/xampp/htdocs).
+- Or clone repository directly to htdocs. In htdocs directory right mouse click Git Bash Here. Type in:
+```sh
+$ git clone https://github.com/LukasC0D/php_file_browser.git
+```
+- Open cloned repository with VS Code. Optional but not necessary. You can already.
+- Run XAMPP. In the C drive run (C:/xampp/xampp-control.exe) and start the Apache server.
+- If the Apache server strated successfully open Your browser.
+- In Your browser on the searchbar type in:
 
 ```sh
 localhost/php_file_browser
 ```
-## Can this project be updated with more advanced features?
+- Now You should successfully open the page and log in to a File Manager.
 
-Yes, plenty of features like:
+## What new features can be achieved on the product?
 
-- Drag & drop a file 
-- Delete a directory 
-- Edit a file/folder name 
-- Open a file directly
-- User registration 
-- Folder/File password protection  
+  Features like:
 
-## Technologies used
+- User registration. 
+- Drag & drop a file. 
+- Delete a directory. 
+- Edit a file/folder name. 
+- Folder/File password protection.
 
-HTML, CSS, PHP
+## What technologies I used?
+
+ Raw PHP, HTML, CSS with BOOTSTRAP.
+
+
+
 
 
 
